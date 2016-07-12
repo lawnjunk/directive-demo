@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="formDemo">
+  <head>
+    <title>NG FORMS</title>
+    <link rel="stylesheet" type="text/css" href="bundle.css" />
+    <script src="bundle.js"></script>
+  </head>
+  <body>
+    <main ng-controller="AdventureController" >
+    <form ng-show="!player.done" ng-submit="start()" ng-init="player.power='fly'; player.class=playerClasses[0]"> 
+      <label for="playerName"> Name: </label>
+      <input type="text" ng-model="player.name" placeholder="sluglord" required/>
+      
+      <label for="randomPower"> Random Power:</label>
+      <input name="randomPower" type="checkbox" ng-model="player.randomPower" >
+
+      <label for="playerPower"> Power: </label>
+      <select ng-model="player.power" ng-disabled="player.randomPower" required>
+        <option name="playerPower" value="{{power}}" ng-repeat="power in powers">
+        {{ power }}
+        </option>
+      </select>
+
+      <label for="randomClass"> Random Class:</label>
+      <input name="randomClass" type="checkbox" ng-model="player.randomClass">
+
+      <label for="playerClass"> Class: </label>
+      <select for="playerClass" id="playerClass" required 
+        ng-disabled="player.randomClass"
+        ng-options="option.name for option in playerClasses track by option.id"
+        ng-model="player.class">
+      </select>
+
+      <input type="submit" value="Done" />
+    </form>
+
+    <div class="game" ng-show="player.done">
+      <h2> Welcome, {{player.name}}!</h2>
+      <p> you are a {{player.class.name}} and have the power to {{player.power}} </p>
+
+      <form> choose action form </form>
+      <ul>
+        <li ng-repeat="move in moves"> 
+          <h2> {{ storyLocation }} </h2>
+          <p> {{ storyText }} </p>
+        </li> 
+      </ul>
+    </div>
+    </main>
+  </body>
+</html>
