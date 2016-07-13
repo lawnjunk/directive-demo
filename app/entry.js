@@ -18,15 +18,17 @@ app.controller('AdventureController', ['$scope', function($scope){
   ]
 
   $scope.start = function(){
-    if ($scope.player.randomPower){
-      $scope.player.power = $scope.powers[Math.floor(Math.random() * $scope.powers.length )]
-    }
+    if($scope.player.name){
+      if ($scope.player.randomPower){
+        $scope.player.power = $scope.powers[Math.floor(Math.random() * $scope.powers.length )]
+      }
 
-    if ($scope.player.randomClass){
-      $scope.player.class = $scope.playerClasses[Math.floor(Math.random() * $scope.playerClasses.length )]
-    }
+      if ($scope.player.randomClass){
+        $scope.player.class = $scope.playerClasses[Math.floor(Math.random() * $scope.playerClasses.length )]
+      }
 
-    $scope.player.done = true
+      $scope.player.done = true
+    }
   }
 }
 ])

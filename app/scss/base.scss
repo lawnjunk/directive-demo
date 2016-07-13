@@ -1,5 +1,45 @@
 @import "vendor/normalize.css";
 
-body {
-  background-color: blue;
+form {
+
+  .error-bubble {
+    width: 200px;
+    background-color: red;
+    color: white;
+    border-radius: 2px;
+    margin-left: 20px;
+    padding: 4px;
+  }
+
+  input {
+    margin: 10px;
+  }
+
+  input[type="text"].ng-pristine {
+    width: 100%;
+    border: solid 2px black;
+  }
+
+  input[type="text"]:focus {
+    width: 100%;
+    border: solid 2px blue;
+  }
+
+  input[type="text"].ng-touched.ng-invalid {
+    width: 100%;
+    border: solid 2px red;
+  }
+
+  input[type="text"].ng-touched.ng-valid {
+    width: 100%;
+    border: solid 2px black;
+  }
+
+  label {
+    background-color: #ff7a7a;
+    margin: 8px;
+    padding: 2px;
+    border-radius: 2px;
+  }
+
 }

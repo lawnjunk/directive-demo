@@ -7,12 +7,17 @@
   </head>
   <body>
     <main ng-controller="AdventureController" >
-    <form ng-show="!player.done" ng-submit="start()" ng-init="player.power='fly'; player.class=playerClasses[0]"> 
+    <form name="createPlayerForm" novalidate ng-show="!player.done" ng-submit="start()" ng-init="player.power='fly'; player.class=playerClasses[0]"> 
       <label for="playerName"> Name: </label>
-      <input type="text" ng-model="player.name" placeholder="sluglord" required/>
+      <input name="playerName" type="text" ng-model="player.name" placeholder="sluglord" required/>
+      <div class="error-bubble" ng-show="createPlayerForm.$submitted && createPlayerForm.playerName.$error.required ">
+        <span> YOU GOTA Submit a name yo!</span>
+      </div>
+      </br>
       
       <label for="randomPower"> Random Power:</label>
-      <input name="randomPower" type="checkbox" ng-model="player.randomPower" >
+      <input name="randomPower" class="custom-check" ng-checked="player.name==='wat'" type="checkbox" ng-model="player.randomPower" >
+      </br>
 
       <label for="playerPower"> Power: </label>
       <select ng-model="player.power" ng-disabled="player.randomPower" required>
@@ -20,16 +25,21 @@
         {{ power }}
         </option>
       </select>
+      </br>
 
       <label for="randomClass"> Random Class:</label>
-      <input name="randomClass" type="checkbox" ng-model="player.randomClass">
+      <input name="randomClass" class="custom-check" type="checkbox" ng-model="player.randomClass">
+      </br>
 
-      <label for="playerClass"> Class: </label>
+      <label for="playerClass" ng-hide="player.randomClass" >
+         Class: 
+      </label>
       <select for="playerClass" id="playerClass" required 
-        ng-disabled="player.randomClass"
+        ng-show="!player.randomClass"
         ng-options="option.name for option in playerClasses track by option.id"
         ng-model="player.class">
       </select>
+      </br>
 
       <input type="submit" value="Done" />
     </form>
